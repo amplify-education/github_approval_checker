@@ -1,0 +1,6 @@
+# Place dependencies in this file, following the distutils format:
+# http://docs.python.org/2/distutils/setupscript.html#relationships-between-distributions-and-packages
+pyyaml
+virtualenv
+connexion <2
+flask-cors >=3.0.2,<4

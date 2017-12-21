@@ -1,0 +1,45 @@
+swagger: '2.0'
+info:
+  description: API to Handle WebHook Events
+  version: 1.0.0
+  title: Github Approval Checker
+
+paths:
+  /hooks/pullRequestReview:
+    post:
+      summary: Receives a PullRequestReview Event from Github.
+      operationId: github_approval_checker.api.endpoints.post_pull_request_review
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/pullRequestReview'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '400':
+          description: Bad request
+          schema:
+            type: string
+
+definitions:
+  pullRequestReview:
+    type: object
+    required:
+    - action
+    - pull_request
+    - review
+    properties:
+      action:
+        type: string
+      pull_request:
+        type: object
+      review:
+        type: object

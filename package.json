@@ -1,0 +1,28 @@
+{
+  "name": "github_approval_checker",
+  "version": "1.0.0",
+  "description": "Github Approval Checker",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amplify-education/github_approval_checker"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amplify-education/github_approval_checker/issues"
+  },
+  "homepage": "https://github.com/amplify-education/github_approval_checker#readme",
+  "dependencies": {
+    "serverless": "^1.20.2",
+    "serverless-domain-manager": "^1.1.12",
+    "serverless-wsgi": "1.1.0"
+  }
+}

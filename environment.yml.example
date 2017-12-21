@@ -1,0 +1,4 @@
+github_username: github-username
+github_api_key: api-key
+webhook_secret: secret-key
+config_filename: approval-checker-config.yml

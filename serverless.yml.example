@@ -1,0 +1,67 @@
+
+service: github-approval-checker
+
+package:
+  include:
+    - github_approval_checker/**
+  exclude:
+    - .codacy.yml
+    - .coverage
+    - .git
+    - .gitignore
+    - .travis.yml
+    - approval-checker-config.yml
+    - LICENSE
+    - MANIFEST.in
+    - README.rst
+    - package.json
+    - package-lock.json
+    - pylintrc
+    - rakefile
+    - README.md
+    - requirements.pip
+    - requirements.txt
+    - setup.cfg
+    - setup.py
+    - test-requirements.pip
+    - tox.ini
+    - github_approval_checker.egg-info/**
+    - .tox/**
+    - bin/**
+    - docs/**
+    - node_modules/**
+    - reports/**
+    - test/**
+    - venv/**
+
+provider:
+  name: aws
+  runtime: python2.7
+  role: arn:aws:iam::000000000000:role/approval_checker
+  deploymentBucket: deploy_bucket
+  region: us-east-1
+  memorySize: 128
+  timeout: 60
+  environment: ${file(./environment.yml)}
+
+plugins:
+  - serverless-wsgi
+  - serverless-domain-manager
+
+custom:
+  wsgi:
+    app: github_approval_checker.app.app
+  customDomain:
+    basePath: ''
+    domainName: your-approval-checker.com
+
+functions:
+  api:
+    handler: wsgi.handler
+    events:
+      - http:
+          method: "ANY"
+          path: "/"
+      - http:
+          method: "ANY"
+          path: "{proxy+}"
